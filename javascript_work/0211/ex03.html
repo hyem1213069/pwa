@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" name="" id="aa">
+<input type="text" name="" id="bb">
+<button type="button" id="calculate">계산</button>
+<script>
+    const $aa = document.querySelector('#aa');
+    const $bb = document.querySelector('#bb');
+    const $button = document.querySelector('#calculate');
+
+    $button.addEventListener('click', function (){
+        // arert() Number() parseInt while for if
+        console.log($aa.value);
+        console.log($bb.value);
+        var result = Number($aa.value) + Number($bb.value);
+        console.log(result);
+    });
+
+</script>
+</body>
+</html>
