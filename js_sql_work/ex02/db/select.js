@@ -10,8 +10,6 @@ const dbInfo={
     database: 'hm'
 }
 
-mysql.createConnection(dbInfo);
-
 const connection = mysql.createConnection(dbInfo);
 // console.log(connection);
 
