@@ -1,4 +1,5 @@
-const randomColor = require('randomcolor');
+const randomcolor = require('randomcolor');
 
-const value = randomColor();
+console.log(randomcolor);
+const value = randomcolor();
 console.log(value);
