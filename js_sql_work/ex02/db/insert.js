@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-function people_insert() {
+function people_insert(name, age) {
     const dbInfo = {
         host: '192.168.0.92',
         user: 'root',
@@ -9,21 +9,20 @@ function people_insert() {
     }
 
     const connection = mysql.createConnection(dbInfo);
-    // console.log(connection);
 
-    // db 연결 시작
+    // DB 연결 시작
     connection.connect();
 
-    const sql = 'insert into people (person_name,age) values(?,?)';
-    const values = ['홍길동', 30];
+    const sql = 'insert into people (person_name,age) values (?,?)';
+    const values = [name, age];
 
     connection.query(sql, values, (error, result) => {
         if (error) throw error;
         console.log(result);
     })
 
-    // db 연결 끊기
+    // DB 연결 끊기
     connection.end();
 }
 
-module.exports = {people_insert};
+module.exports = { people_insert };

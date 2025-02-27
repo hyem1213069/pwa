@@ -13,15 +13,16 @@ function people_select() {
     const connection = mysql.createConnection(dbInfo);
     // console.log(connection);
 
-    // db 연결 시작
+    // DB 연결 시작
     connection.connect();
-    connection.query('select*from people', (error, result, fields) => {
+
+    connection.query('select * from people', (error, result, fields) => {
         if (error) throw error;
         console.log(result);
     })
 
-    // db 연결 끊기
+    // DB 연결 끊기
     connection.end();
 }
 
-module.exports = {people_select};
+module.exports = { people_select }
