@@ -79,7 +79,7 @@ document.querySelector('#update-button-user').addEventListener('click', async fu
 
     // console.log(res.status);
     if (res.status == 200) {
-        const $modal = document.querySelector('#modal');
+        const $modal = document.querySelector('#user-modal');
         $modal.classList.add('hidden');
         await Swal.fire({
             title: "수정성공",
@@ -104,6 +104,7 @@ async function usersSelect() {
                 <td>${res.data[i].email}</td>
                 <td>${res.data[i].created_at}</td>
                 <td>${res.data[i].active}</td>
+                <td><button onclick='userDeleteClick(event, "${res.data[i].id}")'>삭제</button</td>
             </tr>
         `;
     }
@@ -116,6 +117,7 @@ async function usersSelect() {
                 <th>email</th>
                 <th>가입날짜</th>
                 <th>활성화</th>
+                <th></th>
             </tr>
             ${rows}
         </table>
@@ -140,7 +142,35 @@ function userRowClick(trTag) {
     $updateName.value = userName;
     $updateEmail.value = userEmail;
 
-    const $modal = document.querySelector('#modal');
+    const $modal = document.querySelector('#user-modal');
     $modal.classList.remove('hidden');
 }
 
+function userDeleteClick(ev, id) {
+    ev.stopPropagation(); // 다른 이벤트 걸린거 막아라
+    Swal.fire({
+        title: "삭제하시겠습니까?",
+        text: "삭제하시게되면 복원하실수 없습니다.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "확인",
+        cancelButtonText: "취소"
+    }).then((result) => {
+        if (result.isConfirmed) {
+                supabase
+                    .from('users')
+                    .delete()
+                    .eq('id',id)
+                .then(() => {
+                    usersSelect();
+                });
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+        }
+    });
+}
