@@ -23,3 +23,4 @@ const obj = { aa: 10, bb: 20 }
 // aa.apply(obj, [10, 20, 30]);
 // aa.call(obj, 10, 20, 30);
 aa.bind(obj)();
+

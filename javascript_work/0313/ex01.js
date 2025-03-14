@@ -29,3 +29,22 @@ function solution(m, n) {
 }
 
 console.log(solution(3, 12));
+//--------------------------------gpt풀이
+
+function solution(m, n) {
+    var answer = []; // 결과를 담을 배열
+
+    const max = m >= n ? m : n; // 두 수 중 더 큰 값을 max로 설정
+
+    for (let i = 1; i <= max; i++) { // 1부터 두 수 중 큰 값까지 반복
+        if (m % i == 0 && n % i == 0) { // m과 n 모두 나누어떨어지는 숫자 찾기
+            answer[0] = i; // 가장 큰 공약수 저장
+        }
+    }
+
+    answer[1] = (m * n) / answer[0]; // 최소공배수 계산 공식 적용
+
+    return answer;
+}
+
+console.log(solution(3, 12)); // 결과: [3, 12]
