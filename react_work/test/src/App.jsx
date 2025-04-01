@@ -11,7 +11,7 @@ function App() {
       <div>
         <h3 style={{color:'rgb(255, 145, 0)'}}>[카운터증가감소]</h3>
         <Counter/>
-        <hr />
+        <hr  />
         <h3 style={{color:'rgb(0, 81, 255)'}}>[나이세기]</h3>
         <Age/>
       </div>
