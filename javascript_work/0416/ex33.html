@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <ul id="fruit">
+      <li class="fruit apple">Apple</li>
+      <li class="fruit banana">Banana</li>
+      <li class="fruit orange">Orange</li>
+    </ul>
+    <script>
+      const $fruits = document.getElementById("fruit");
+      console.log($fruits);
+
+      const { firstChild } = $fruits;
+      console.log(firstChild);
+
+      const { nextElementSibling } = firstChild;
+      console.log(nextElementSibling);
+
+      const { previousSibling } = nextElementSibling || {};
+      console.log(previousSibling);
+
+      console.time("innerHTML");
+      $fruits.innerHTML = `
+        <li class="red">Apple</li>
+        <li class="red">Banana</li>
+        <li class="red">Orange</li>
+        <li class="red">Grape</li>
+      `;
+      console.timeEnd("innerHTML");
+
+      console.time("createElement");
+      const $addLi = document.createElement("li");
+      $addLi.textContent = "Grape";
+      $fruits.appendChild($addLi);
+      console.timeEnd("createElement");
+    </script>
+  </body>
+</html>
