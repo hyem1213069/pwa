@@ -72,13 +72,39 @@ const AppLayout = () => {
                 collapsedWidth="0"
                 onBreakpoint={(broken) => setCollapsed(broken)}
             >
-                <div style={{height: 32, margin: 16, background: 'rgba(255,255,255,0.2)'}}/>
+                <div
+                    style={{height: 45, margin: 16, background: 'rgba(255,255,255,0.2)'}}
+                    onClick={() => {
+                    if(!screens.md) {
+                        setCollapsed(true);
+                    }
+                }}
+                >
+
+                <Link to={`/`}>
+                    <h1 style={{color:"white",
+                    textAlign: "center",
+                    fontSize: "1rem",
+                    lineHeight:"3rem"}}>
+                    관리자
+                    </h1>
+                </Link>
+                </div>
                 <Menu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['dashboard']}
                     selectedKeys={[selectedKey]}
                     items={items}
+                    onClick={() => {
+                        // screens.md 는 화면사이즈가 미디엄 이상일때는 true값이 출력되고
+                        // screens.md 는 화면사이즈가 xs 스몰사이즈일때는 false값이 출력
+                        // console.log('누름'+screens.md);
+                        if(!screens.md) { // 모바일 사이즈 일때...
+                            // menu창 닫기
+                            setCollapsed(true);
+                        }
+                    }}
                 />
             </Sider>
 
