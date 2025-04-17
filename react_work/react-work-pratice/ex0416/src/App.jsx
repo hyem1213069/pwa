@@ -20,6 +20,7 @@ const {Header, Sider, Content, Footer} = Layout;
 const {useBreakpoint} = Grid;
 
 import { useLocation } from 'react-router-dom';
+import UserLoginPage from "./pages/user/UserLoginPage.jsx";
 
 // 메뉴 항목 구성
 const items = [
@@ -101,7 +102,7 @@ const AppLayout = () => {
                         />
                     )}
                     <div style={{fontSize: '1.1rem', fontWeight: 'bold'}}>
-                        로고 또는 상단 헤더
+                        <Link to={`/user/login`}>로그인</Link>
                     </div>
                 </Header>
 
@@ -112,6 +113,7 @@ const AppLayout = () => {
                     <Route path="/review" element={<ReviewPage/>}></Route>
                     <Route path="/user/add" element={<UserAddPage/>}></Route>
                     <Route path="/user/list" element={<UserListPage/>}></Route>
+                    <Route path="/user/login" element={<UserLoginPage/>}></Route>
                 </Routes>
 
                 {/* 하단 푸터 */}
