@@ -1,9 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Table, Tag, Button } from "antd";
 
 function TodoListPage(props) {
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+    }, []);
+
+    const columns = [
+        {
+            title: 'Id',
+            dataIndex: 'id',
+            key: 'id',
+            width: 80,
+        },
+        {
+            title: '할일',
+            dataIndex: 'todo',
+            key: 'todo',
+        },
+        {
+            title: '완료여부',
+            key: 'completed',
+            dataIndex: 'completed',
+            render: (completed) => (
+                <Tag color={completed ? 'green' : "volcano"}>
+                    {completed ? "완료" : "미완료"}
+                </Tag>
+            )
+        },
+        {
+            title: '사용자',
+            dataIndex: 'userId',
+            key: 'userId',
+        }
+    ];
+
+    const loadData = async () => {
+        fetch('http://dummyjson.com/todos')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setTodos(data.todos);
+            });
+    };
+
     return (
         <div>
-            <h1>LIST page</h1>
+            <h1>목록</h1>
+            {todos.map(todo => (
+                <h1 key={todo.id}>{todo.todo}</h1>
+            ))}
+            <Button type='primary' onClick={loadData} style={{ margin: '1rem 0' }}>
+                조회
+            </Button>
+            <Table dataSource={todos} rowKey="id" columns={columns} />
         </div>
     );
 }

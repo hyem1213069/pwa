@@ -1,29 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {Layout, Menu, Button, Grid, Row, Col, Card} from 'antd';
 import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UserOutlined,
-    DashboardOutlined,
-    SettingOutlined,
-    InfoOutlined,
-    FundViewOutlined,
+    MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, DashboardOutlined,
+    SettingOutlined, InfoOutlined, FundViewOutlined,
 } from '@ant-design/icons';
-import {Link, Route, Routes} from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
+import Logout from "./components/Logout.jsx";
 import RootPage from "./pages/RootPage.jsx";
 import TodoPage from "./pages/todo/TodoPage.jsx";
-import ReviewPage from "./pages/ReviewPage.jsx";
+import TodoListPage from "./pages/todo/TodoListPage.jsx";
+import TodoAddPage from "./pages/todo/TodoAddPage.jsx";
 import UserAddPage from "./pages/user/UserAddPage.jsx";
 import UserListPage from "./pages/user/UserListPage.jsx";
+import UserLoginPage from "./pages/user/UserLoginPage.jsx";
+import ReviewAddPage from "./pages/review/ReviewAddPage.jsx";
+import ReviewPage from "./pages/review/ReviewPage.jsx";
+import ReviewListPage from "./pages/review/ReviewListPage.jsx";
+
 
 const {Header, Sider, Content, Footer} = Layout;
 const {useBreakpoint} = Grid;
-
-import {useLocation} from 'react-router-dom';
-import UserLoginPage from "./pages/user/UserLoginPage.jsx";
-import Logout from "./components/Logout.jsx";
-import TodoListPage from "./pages/todo/TodoListPage.jsx";
-import TodoAddPage from "./pages/todo/TodoAddPage.jsx";
 
 // 메뉴 항목 구성
 const items = [
@@ -44,7 +40,11 @@ const items = [
     {
         key: 'review',
         icon: <FundViewOutlined/>,
-        label: <Link to={`/review`}>리뷰</Link>,
+        label: 'review',
+        children: [
+            {key: '/review/list', label: <Link to={`/review/list`}>ReviewList</Link>},
+            {key: '/review/add', label: <Link to={`/review/add`}>ReviewAdd</Link>},
+        ]
     },
     {
         key: 'users',
@@ -168,6 +168,11 @@ const AppLayout = () => {
                     <Route path="/todo" element={<TodoPage/>}>
                         <Route path="list" element={<TodoListPage/>}></Route>
                         <Route path="add" element={<TodoAddPage/>}></Route>
+                    </Route>
+                    <Route path="/review" element={<ReviewPage />}>
+                        <Route index element={<ReviewListPage />} />
+                        <Route path="list" element={<ReviewListPage />} />
+                        <Route path="add" element={<ReviewAddPage />} />
                     </Route>
                 </Routes>
 
