@@ -1,12 +1,14 @@
 {
-  "name": "javascript_work",
+  "name": "0424",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "ex01.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "lodash": "^4.17.21"
   }

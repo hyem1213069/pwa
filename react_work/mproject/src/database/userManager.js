@@ -1,14 +1,23 @@
 import {supabase} from "./supabaseClient.js";
 
-export const deleteUserById = async (ids) => {
+export const deleteUserByIds = async (ids) => {
     const res
-        = await supabase.from("members").delete().in('id', ids);
+        = await supabase.from('members').delete().in('id', ids);
+    return res;
+}
+
+export const updateUserById = async (id, values) => {
+    const res
+        = await supabase.from('members').update(values).eq('id', id);
     return res;
 }
 
 export const getUsers = async () => {
     const users
-        = await supabase.from('members').select();
+        = await supabase
+            .from('members')
+            .select()
+            .order('id', {ascending: false});
     // console.log(users);
     return users;
 }
@@ -31,7 +40,6 @@ export const loginUser = async (email, password) => {
             data: data[0]
         }
     }
-
 }
 
 
