@@ -3,7 +3,7 @@ fetch("http://localhost:5000/todos/", {
   headers: { "content-type": "application/json" },
   body: JSON.stringify({
     todo: "따흐흐흑...",
-    completed: false,
+    completed: false,w
   }),
 })
   .then((res) => res.json())
