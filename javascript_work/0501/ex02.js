@@ -1,3 +1,5 @@
+// node 22 버전 
+// node 13 버전
 function* genFunc() {
   yield 1;
   yield 2;
@@ -5,7 +7,7 @@ function* genFunc() {
 }
 
 const gen = genFunc();
-console.log(Symbol.iteratior in gen);
+console.log(Symbol.iterator in gen);
 console.log("next" in gen);
 
 console.log(Object.getOwnPropertyDescriptors("gen"));

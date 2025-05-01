@@ -1,18 +1,19 @@
 const a = () => {
- throw new Error('에러발생');
+  throw new Error("에러 발생");
 };
 
 const b = () => {
-    a();
-}
+  a();
+};
 
 const c = () => {
-    b();
+  b();
 };
 
 try {
-    c();
-}catch (e) {
-    console.log(e);
+  c();
+} catch (e) {
+  console.log(e);
 }
+
 console.log("종료되었습니다.");
